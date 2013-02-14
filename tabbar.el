@@ -288,7 +288,12 @@ The function is called with no arguments.")
 
 (defsubst tabbar-click-p (event)
   "Return non-nil if EVENT is a mouse click event."
-  (memq 'click (event-modifiers event)))
+  (or
+   (memq 'click (event-modifiers event))
+   (memq 'double (event-modifiers event))
+   (memq 'triple (event-modifiers event))
+   )
+)
 
 (defun tabbar-shorten (str width)
   "Return a shortened string from STR that fits in the given display WIDTH.
